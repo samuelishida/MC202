@@ -4,7 +4,3 @@ Aluno: Samuel Toyoshi Ishida
 RA: 160250
 Turma A
 */
-int main()
-{
-	return 0;
-}
