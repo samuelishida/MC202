@@ -17,9 +17,9 @@ struct list{
 	list *next;
 };
 
-void push_back(int n,list **init);
-void pop_back(list **init);
-bool stack_empty(list *init);
-list *check_back(list **init);
-void free_stack(list **init);
-void init_stack(list **init);
+void push_back(int n,list **head);
+void pop_back(list **head);
+bool stack_empty(list *head);
+list *check_back(list **head);
+void free_stack(list **head);
+void init_stack(list **head);

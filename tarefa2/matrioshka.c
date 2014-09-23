@@ -7,60 +7,51 @@
 
 #include "matrioshka.h"
 
-void push_back(int n, list **init)
+void push_back(int n, list **head)
 {
-	list *p = *init;
+	list *p;
 	
-	while(p->next != NULL)
-		p = p->next;
+	p = malloc(sizeof(list));
+	p->n = n;
+	p->tam = 0;
 	
-	p->next = malloc(sizeof(list));
-	p->next->n = n;
-	p->next->tam = 0;
-	p->next->next = NULL;
+	p->next = (*head)->next;
+	(*head)->next = p;
 	
 }
 
-bool stack_empty(list *init)
+bool stack_empty(list *head)
 {
-	return (init->next == NULL)?(true):(false);
+	return (head->next == NULL)?(true):(false);
 }
 
-void pop_back(list **init)
+void pop_back(list **head)
 {
-	list *p = *init;
+	list *p = *head;
 	
-	if(stack_empty(*init))
+	if(stack_empty(*head))
 		return;
 	
-	while(p->next->next != NULL)
-		p = p->next;
+	p = (*head)->next->next;
 		
-	free(p->next);
-	p->next = NULL;
+	free((*head)->next);
+	
+	(*head)->next = p;
 }
 
-list *check_back(list **init)
+list *check_back(list **head)
 {
-	list *p = *init;
-	
-	if(stack_empty(*init))
-		return (list*) NULL;
-	
-	while(p->next != NULL)
-		p = p->next;
-	
-	return p;
+	return (*head)->next;
 }
 
-void free_stack(list **init)
+void free_stack(list **head)
 {
-	while(!stack_empty(*init))
-		pop_back(init);
+	while(!stack_empty(*head))
+		pop_back(head);
 }
 
-void init_stack(list **init)
+void init_stack(list **head)
 {
-	*init = malloc(sizeof(list));
-	(*init)->next = NULL;
+	*head = malloc(sizeof(list));
+	(*head)->next = NULL;
 }
