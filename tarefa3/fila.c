@@ -9,11 +9,11 @@ Turma A
 
 Fila *cria_fila()
 {
-	fila *p;
+	Fila *p;
 	
-	p = (fila*)malloc(sizeof(Fila));
+	p = (Fila*)malloc(sizeof(Fila));
 	
-	p->incio = p->fim = 0;
+	p->inicio = p->fim = 0;
 	
 	return p;
 }
@@ -45,12 +45,12 @@ int remove_fila(Fila *p)
 	return n;
 }
 
-bool fila_cheia(fila *p)
+bool fila_cheia(Fila *p)
 {
 	return (p->inicio == ((p->fim + 1) % MAX));
 }
 
-bool fila_vazia(fila *p)
+bool fila_vazia(Fila *p)
 {
 	return (p->inicio == p->fim) ;
 }
