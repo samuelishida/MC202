@@ -7,12 +7,21 @@ Turma A
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define MAX 100
 
-typedef struct
+struct Fila
 {
 	int inicio;
 	int fim;
 	int num[MAX];
-}fila;
+};
+
+typedef struct Fila Fila;
+
+Fila *cria_fila();
+void insere_fila(Fila *p,int n);
+void remove_fila(Fila *p);
+bool fila_cheia(Fila *p);
+bool fila_vazia(Fila *p);
