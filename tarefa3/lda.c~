@@ -7,11 +7,11 @@ Turma A
 
 #include "fila.h"
 
-void rotular_pontos(void **m, void **f, int nLinhas, int nColunas)
+void rotular_pontos(void m[][MAX], void **f, int nLinhas, int nColunas)
 {
 	int i, j;
 	char rotulo='a';
-	Mapa **mapa = (Mapa **) m;
+	Mapa mapa[][MAX] = m;
 	Fila **fila = (Fila **) f;
 	
 	for(i=0;i<nLinhas;i++)
@@ -28,7 +28,7 @@ void rotular_pontos(void **m, void **f, int nLinhas, int nColunas)
 	}
 }
 
-void calcula_lda(void **m, void **f)
+void calcula_lda(void *m, void **f)
 {
 	
 }
