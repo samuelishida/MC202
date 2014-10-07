@@ -29,37 +29,57 @@ void rotular_pontos(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 {
 	int i, j, h;
+	bool flag;
 	Mapa n;
 	
 	h = filaOrd(f);
 	
-	while(h)
+	while(h < MAX)
 	{
+		flag = true;
 		n = remove_fila(f[h]);
 		
-		for(i=1; i<=nLinhas; i++)
-			for(j=1; j<=nColunas; j++)
+		/*for(i=0; i<=9; i++){
+			printf("f[%d] = ",i);
+			for(j=f[i]->inicio%MAX; j<f[i]->fim%MAX; j++)
+				printf("%d ",f[i]->ponto[j].n);
+			printf("\n");
+		}*/
+		
+		for(i=1; i<=nLinhas && flag; i++)
+			for(j=1; j<=nColunas && flag; j++)
 				if(m[i][j].i == n.i && m[i][j].j == n.j)
-					break;
+					flag = false;
 					
-		if(m[i-1][j].n < MAX){
+		i--;
+		j--;
+		
+		/*printf("m[%d,%d] %d  n.i %d n.j %d\n",i,j,m[i][j].n,n.i,n.j);*/
+		
+		if(m[i-1][j].n < MAX && !m[i-1][j].rotulo){
 			m[i-1][j].rotulo = n.rotulo;
 			insere_fila(f[m[i-1][j].n],m[i-1][j]);
 		}
-		else if(m[i][j-1].n < MAX){
+		if(m[i][j-1].n < MAX && !m[i][j-1].rotulo){
 			m[i][j-1].rotulo = n.rotulo;
 			insere_fila(f[m[i][j-1].n],m[i][j-1]);
 		}
-		else if(m[i+1][j].n < MAX){
+		if(m[i+1][j].n < MAX && !m[i+1][j].rotulo){
 			m[i+1][j].rotulo = n.rotulo;
 			insere_fila(f[m[i+1][j].n],m[i+1][j]);
 		}
-		else if(m[i][j+1].n < MAX){
+		if(m[i][j+1].n < MAX && !m[i][j+1].rotulo){
 			m[i][j+1].rotulo = n.rotulo;
 			insere_fila(f[m[i][j+1].n],m[i][j+1]);
 		}
 		
 		h = filaOrd(f);
+		
+		/*for(i=0;i<=nLinhas+1;i++){
+			for(j=0;j<=nColunas+1;j++)
+				printf("%c ",m[i][j].rotulo);
+			printf("\n");
+		}*/
 	}
 }
 
@@ -79,8 +99,8 @@ int filaOrd(Fila *f[MAX])
 	int i;
 	
 	for(i=0; i<MAX ; i++)
-		if(fila_vazia(f[i]))
+		if(!fila_vazia(f[i]))
 			break;
 			
-	return (i == MAX)?(0):(i);
+	return i;
 }

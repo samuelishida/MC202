@@ -34,7 +34,7 @@ Mapa remove_fila(Fila *p)
 	Mapa n;
 	
 	if(fila_vazia(p))
-		return;
+		return n;
 		
 	else
 	{
