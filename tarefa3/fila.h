@@ -10,17 +10,25 @@ Turma A
 #include <stdbool.h>
 #define MAX 100
 
+struct Mapa{
+	int n;
+	int i, j;
+	char rotulo;
+};
+
+typedef struct Mapa Mapa;
+
 struct Fila
 {
 	int inicio;
 	int fim;
-	int ponto[MAX];
+	Mapa ponto[MAX];
 };
 
 typedef struct Fila Fila;
 
 Fila *cria_fila();
-void insere_fila(Fila *p,int n);
-int remove_fila(Fila *p);
+void insere_fila(Fila *p,Mapa n);
+Mapa remove_fila(Fila *p);
 bool fila_cheia(Fila *p);
 bool fila_vazia(Fila *p);

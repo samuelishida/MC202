@@ -18,7 +18,7 @@ Fila *cria_fila()
 	return p;
 }
 
-void insere_fila(Fila *p,int n)
+void insere_fila(Fila *p,Mapa n)
 {
 	if(fila_cheia(p))
 		return;
@@ -29,9 +29,9 @@ void insere_fila(Fila *p,int n)
 	}
 }
 
-int remove_fila(Fila *p)
+Mapa remove_fila(Fila *p)
 {
-	int n;
+	Mapa n;
 	
 	if(fila_vazia(p))
 		return;
