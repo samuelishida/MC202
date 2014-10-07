@@ -1,15 +1,47 @@
-1d0
-< Illegal access
-\ No newline at end of file
-1d0
-< Illegal access
-\ No newline at end of file
-1d0
-< Illegal access
-\ No newline at end of file
-1d0
-< Illegal access
-\ No newline at end of file
-1d0
-< Illegal access
-\ No newline at end of file
+Comparing files arq01.res and ARQ01.OUT
+***** arq01.res
+    1:  c a a a d 
+    2:  c b a d d 
+    3:  c c a d d 
+    4:  c e f d d 
+    5:  c f f f d 
+***** ARQ01.OUT
+    1:  b a a a c 
+    2:  b a a c c 
+    3:  b b a c c 
+    4:  b d e c c 
+    5:  b e e e c 
+*****
+
+Comparing files arq02.res and ARQ02.OUT
+FC: no differences encountered
+
+Comparing files arq03.res and ARQ03.OUT
+FC: no differences encountered
+
+Comparing files arq04.res and ARQ04.OUT
+***** arq04.res
+    8:  a a a a a a 
+    9:  b a a c d e 
+   10:  b b c c d e 
+   11:  b f f c d e 
+   12:  f f f f f f 
+   13:  g f f f f g 
+   14:  g g g f g g 
+   15:  g g g g g g 
+   16:  g g g g g g 
+***** ARQ04.OUT
+    8:  a a a a a a 
+    9:  b a a a a a 
+   10:  b b a a a a 
+   11:  b c c a a a 
+   12:  c c c c c c 
+   13:  d c c c c d 
+   14:  d d d c d d 
+   15:  d d d d d d 
+   16:  d d d d d d 
+*****
+
+Comparing files arq05.res and ARQ05.OUT
+FC: no differences encountered
+

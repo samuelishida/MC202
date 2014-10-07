@@ -14,4 +14,5 @@ void rotular_pontos(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas);
 void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas);
 /*coloca MAX nas bordas do mapa para facilitar na determinacao dos pontos dissipadores*/
 void inicia_mapa(Mapa m[][MAX+2], int nLinhas, int nColunas);
+/*retorna o indice da fila de maior prioridade que nao esta vazia, e se nao houver retorna MAX*/
 int filaOrd(Fila *f[MAX]);

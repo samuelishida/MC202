@@ -56,6 +56,7 @@ void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 		
 		/*printf("m[%d,%d] %d  n.i %d n.j %d\n",i,j,m[i][j].n,n.i,n.j);*/
 		
+		/*verifica se esta dentro do mapa e se esta rotulado*/
 		if(m[i-1][j].n < MAX && !m[i-1][j].rotulo){
 			m[i-1][j].rotulo = n.rotulo;
 			insere_fila(f[m[i-1][j].n],m[i-1][j]);
@@ -73,6 +74,7 @@ void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 			insere_fila(f[m[i][j+1].n],m[i][j+1]);
 		}
 		
+		/*pega a proxima fila com maior prioridade*/
 		h = filaOrd(f);
 		
 		/*for(i=0;i<=nLinhas+1;i++){

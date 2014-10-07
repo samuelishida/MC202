@@ -27,6 +27,7 @@ struct Fila
 
 typedef struct Fila Fila;
 
+/*funcoes para manipular a fila*/
 Fila *cria_fila();
 void insere_fila(Fila *p,Mapa n);
 Mapa remove_fila(Fila *p);
