@@ -15,11 +15,13 @@ void rotular_pontos(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 	for(i=1;i<=nLinhas;i++)
 	{
 		for(j=1;j<=nColunas;j++)
-		{
-			if(m[i][j].n < m[i-1][j].n && m[i][j].n < m[i][j-1].n 
-			&& m[i][j].n < m[i+1][j].n && m[i][j].n < m[i][j+1].n)
+		{	/*se acchar um ponto dissipador*/
+			if(m[i][j].n <= m[i-1][j].n && m[i][j].n <= m[i][j-1].n 
+			&& m[i][j].n <= m[i+1][j].n && m[i][j].n <= m[i][j+1].n)
 			{
+				/*atribua o rotulo e depois o incremente*/
 				m[i][j].rotulo = rotulo++;
+				/*coloque o ponto na sua respectiva fila*/
 				insere_fila(f[m[i][j].n],m[i][j]);
 			}
 		}
@@ -34,18 +36,14 @@ void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 	
 	h = filaOrd(f);
 	
+	/*enquanto a fila ordenada nao estiver vazia*/
 	while(h < MAX)
 	{
 		flag = true;
+		/*remova o elemento de maior prioridade*/
 		n = remove_fila(f[h]);
 		
-		/*for(i=0; i<=9; i++){
-			printf("f[%d] = ",i);
-			for(j=f[i]->inicio%MAX; j<f[i]->fim%MAX; j++)
-				printf("%d ",f[i]->ponto[j].n);
-			printf("\n");
-		}*/
-		
+		/*procure o elemento no mapa*/
 		for(i=1; i<=nLinhas && flag; i++)
 			for(j=1; j<=nColunas && flag; j++)
 				if(m[i][j].i == n.i && m[i][j].j == n.j)
@@ -53,8 +51,6 @@ void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 					
 		i--;
 		j--;
-		
-		/*printf("m[%d,%d] %d  n.i %d n.j %d\n",i,j,m[i][j].n,n.i,n.j);*/
 		
 		/*verifica se esta dentro do mapa e se esta rotulado*/
 		if(m[i-1][j].n < MAX && !m[i-1][j].rotulo){
@@ -76,12 +72,6 @@ void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 		
 		/*pega a proxima fila com maior prioridade*/
 		h = filaOrd(f);
-		
-		/*for(i=0;i<=nLinhas+1;i++){
-			for(j=0;j<=nColunas+1;j++)
-				printf("%c ",m[i][j].rotulo);
-			printf("\n");
-		}*/
 	}
 }
 

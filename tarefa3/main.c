@@ -30,19 +30,6 @@ int main()
 			m[i][j].rotulo = 0;
 		}
 		
-	/*for(i=0;i<=nLinhas+1;i++){
-		for(j=0;j<=nColunas+1;j++)
-			printf("%3d ",m[i][j].n);
-			
-			printf("\n");
-	}
-	
-	for(i=0;i<=nLinhas+1;i++){
-		for(j=0;j<=nColunas+1;j++)
-			printf("m[%d,%d] ",m[i][j].i,m[i][j].j);
-			
-			printf("\n");
-	}*/
 	
 	/*acha os pontos dissipadores e os coloca na fila*/
 	rotular_pontos(m, f, nLinhas, nColunas);
