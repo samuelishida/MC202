@@ -5,7 +5,7 @@ RA: 160250
 Turma A
 */
 
-#include "fila.h"
+#include "lda.h"
 
 int main()
 {
@@ -19,7 +19,7 @@ int main()
 	for(i=0;i<MAX;i++)
 		f[i] = cria_fila();
 	
-	inicia_mapa((void **)m,nLinhas,nColunas);
+	inicia_mapa(m,nLinhas,nColunas);
 	
 	for(i=1;i<=nLinhas;i++)
 		for(j=1;j<=nColunas;j++)
@@ -32,7 +32,7 @@ int main()
 			printf("\n");
 	}
 	
-	rotular_pontos((void **)m, (void **)f, nLinhas, nColunas);
+	rotular_pontos(m, f, nLinhas, nColunas);
 		
 	return 0;
 }

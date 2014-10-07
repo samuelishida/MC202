@@ -5,42 +5,39 @@ RA: 160250
 Turma A
 */
 
-#include "fila.h"
+#include "lda.h"
 
-void rotular_pontos(void **m, void **f, int nLinhas, int nColunas)
+void rotular_pontos(Mapa m[][MAX+2], Fila *f[MAX], int nLinhas, int nColunas)
 {
 	int i, j;
 	char rotulo='a';
-	Mapa **mapa = (Mapa **) m;
-	Fila **fila = (Fila **) f;
-	
+
 	for(i=1;i<=nLinhas;i++)
 	{
 		for(j=1;j<=nColunas;j++)
 		{
-			if(mapa[i][j].n > mapa[i-1][j].n && mapa[i][j].n > mapa[i][j-1].n 
-			&& mapa[i][j].n > mapa[i+1][j].n && mapa[i][j].n > mapa[i][j+1].n)
+			if(m[i][j].n > m[i-1][j].n && m[i][j].n > m[i][j-1].n 
+			&& m[i][j].n > m[i+1][j].n && m[i][j].n > m[i][j+1].n)
 			{
-				mapa[i][j].rotulo = rotulo++;
-				insere_fila(fila[mapa[i][j].n],mapa[i][j]);
+				m[i][j].rotulo = rotulo++;
+				insere_fila(f[m[i][j].n],m[i][j].n);
 			}
 		}
 	}
 }
 
-void calcula_lda(void **m, void **f)
+void calcula_lda(Mapa m[][MAX+2], Fila *f[MAX])
 {
 	
 }
 
-void inicia_mapa(void (*m)[MAX+2], int nLinhas, int nColunas)
+void inicia_mapa(Mapa m[][MAX+2], int nLinhas, int nColunas)
 {
 	int i;
-	Mapa **mapa = (Mapa **) m;
 	
 	for(i=0;i<=nColunas+1; i++)
-		mapa[0][i].n = mapa[nLinhas+1][i].n = -1;
+		m[0][i].n = m[nLinhas+1][i].n = -1;
 	
 	for(i=0;i<=nLinhas+1;i++)
-		mapa[i][0].n = mapa[i][nColunas+1].n = -1;
+		m[i][0].n = m[i][nColunas+1].n = -1;
 }

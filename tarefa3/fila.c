@@ -5,7 +5,7 @@ RA: 160250
 Turma A
 */
 
-#include "fila.h"
+#include "lda.h"
 
 Fila *cria_fila()
 {
@@ -18,7 +18,7 @@ Fila *cria_fila()
 	return p;
 }
 
-void insere_fila(Fila *p,Mapa n)
+void insere_fila(Fila *p,int n)
 {
 	if(fila_cheia(p))
 		return;
@@ -29,9 +29,9 @@ void insere_fila(Fila *p,Mapa n)
 	}
 }
 
-Mapa remove_fila(Fila *p)
+int remove_fila(Fila *p)
 {
-	Mapa n;
+	int n;
 	
 	if(fila_vazia(p))
 		return;
