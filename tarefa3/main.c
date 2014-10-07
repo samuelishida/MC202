@@ -19,21 +19,20 @@ int main()
 	for(i=0;i<MAX;i++)
 		f[i] = cria_fila();
 	
-	for(i=0;i<nColunas+2; i++)
-		m[0][i].n = m[nLinhas+2][i].n = -1;
-	
-	for(i=0;i<nLinhas+2;i++)
-		m[i][0].n = m[i][nColunas+2].n = -1;
+	inicia_mapa((void **)m,nLinhas,nColunas);
 	
 	for(i=1;i<=nLinhas;i++)
 		for(j=1;j<=nColunas;j++)
 			scanf("%d",&m[i][j].n);
 		
-	for(i=0;i<=nLinhas+1;i++)
+	for(i=0;i<=nLinhas+1;i++){
 		for(j=0;j<=nColunas+1;j++)
-			printf("%d%s",m[i][j].n,(i == nLinhas+1)?("\n"):(""));
+			printf("%2.d ",m[i][j].n);
+			
+			printf("\n");
+	}
 	
-	/*rotular_pontos(m, f, nLinhas, nColunas);*/
+	rotular_pontos((void **)m, (void **)f, nLinhas, nColunas);
 		
 	return 0;
 }

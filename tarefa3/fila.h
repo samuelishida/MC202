@@ -17,7 +17,7 @@ struct Fila
 typedef struct Fila Fila;
 
 Fila *cria_fila();
-void insere_fila(Fila *p,int n);
+void insere_fila(Fila *p,Mapa n);
 Mapa remove_fila(Fila *p);
 bool fila_cheia(Fila *p);
 bool fila_vazia(Fila *p);

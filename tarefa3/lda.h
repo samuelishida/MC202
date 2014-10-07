@@ -22,3 +22,5 @@ typedef struct Mapa Mapa;
 void rotular_pontos(void **m, void **f, int nLinhas, int nColunas);
 /*faz as operacoes com a fila para resolver o problema*/
 void calcula_lda(void **m, void **f);
+/*coloca -1 nas bordas do mapa para facilitar na determinacao dos pontos dissipadores*/
+void inicia_mapa(void (*m)[MAX+2], int nLinhas, int nColunas);

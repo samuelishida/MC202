@@ -18,7 +18,7 @@ Fila *cria_fila()
 	return p;
 }
 
-void insere_fila(Fila *p,int n)
+void insere_fila(Fila *p,Mapa n)
 {
 	if(fila_cheia(p))
 		return;
