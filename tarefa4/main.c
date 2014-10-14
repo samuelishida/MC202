@@ -19,7 +19,7 @@ int main()
 	
 	res = quick(vet,n);
 	
-	printf("%f\n",res);
+	printf("%.10f\n",res);
 	
 	return 0;
 }

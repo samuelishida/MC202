@@ -9,8 +9,10 @@ Turma A
  
 double quick(int vet[], int tam)
 {	
-	int vetmenor[MAX-1], vetmaior[MAX-1], pivo, nMenor, nMaior, i;
-	double custo;
+	int vetmenor[MAX-1], vetmaior[MAX-1], pivo, nMenor, nMaior, i, custoi;
+	double custo=0;
+	
+	printf("tam = %d\n",tam);
 	
 	if(tam < 2)
 		return 0;
@@ -23,19 +25,43 @@ double quick(int vet[], int tam)
 			return 1;
 	}
 	
-	for(pivo=0; pivo<tam; i++)
+	for(pivo=0; pivo<tam; pivo++)
 	{
-		nMenor = nMaior = 0;
+		nMenor = nMaior = custoi = 0;
 		
+		printf("pivo = %d\n",pivo);
+				
 		for(i=0; i<pivo; i++)
 			if(vet[i] > vet[pivo])
-				vetmaior[nMaior++] = vet[i];
+				custoi++;
 		
-		for(i=tam-1; i>pivo; i++)
+
+		for(i=pivo+1; i<tam; i++)
 			if(vet[i] < vet[pivo])
+				custoi++;
+		
+		for(i=0; i<tam; i++)
+		{
+			if(vet[i] > vet[pivo])
+				vetmaior[nMaior++] = vet[i];
+				
+			else if(vet[i] > vet[pivo])
 				vetmenor[nMenor++] = vet[i];
+		}
+	
+		
+		for(i=0; i<nMenor; i++)
+			printf("%d ",vetmenor[i]);
+		
+		printf("\n");
+		
+		for(i=0; i<nMaior; i++)
+			printf("%d ",vetmaior[i]);
+		
+		printf("\n");
+		
 			
-		custo += nMenor + nMaior + quick(vetmenor,nMenor) + quick(vetmaior,nMaior);
+		custo += custoi + quick(vetmenor,nMenor) + quick(vetmaior,nMaior);
 	}
 	
 	return custo/tam;

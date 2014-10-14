@@ -19,7 +19,7 @@ int main()
 	
 	res = quick(vet,n);
 	
-	printf("%lf\n",res);
+	printf("%f\n",res);
 	
 	return 0;
 }
