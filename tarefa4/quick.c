@@ -43,7 +43,7 @@ void sublistas(int vet[], int vetmenor[], int vetmaior[], int tam, int pivo, int
 /*retorna a valor do custo*/
 double quick(int vet[], int tam)
 {	
-	int vetmenor[MAX-1], vetmaior[MAX-1], pivo, nMenor, nMaior, i;
+	int vetmenor[MAX-1], vetmaior[MAX-1], pivo, nMenor, nMaior;
 	double custo=0;
 	
 	/*se o tamanho for 0 ou 1, nao ha custo operacional*/
