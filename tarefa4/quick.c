@@ -43,7 +43,7 @@ void sublistas(int vet[], int vetmenor[], int vetmaior[], int tam, int pivo, int
 /*retorna a valor do custo*/
 double quick(int vet[], int tam)
 {	
-	int vetmenor[MAX-1], vetmaior[MAX-1], pivo, nMenor, nMaior;
+	int *vetmenor, *vetmaior, pivo, nMenor, nMaior;
 	double custo=0;
 	
 	/*se o tamanho for 0 ou 1, nao ha custo operacional*/
@@ -57,6 +57,12 @@ double quick(int vet[], int tam)
 		else
 			return 1;
 	}
+	
+	/*tamanho maximo dos subvetores eh tam-1 pois no pior caso
+	um deles eh vazio e o outro contem todos os elementos de vet menos o pivo*/
+	vetmenor = (int *) malloc( (tam-1)*sizeof(int) );
+	vetmaior = (int *) malloc( (tam-1)*sizeof(int) );
+	
 	/*seleciona cada numero como pivo*/
 	for(pivo=0; pivo<tam; pivo++)
 	{
@@ -66,6 +72,10 @@ double quick(int vet[], int tam)
 		/*incrementa o custo total com o custo individual mais o custo do quick dos valores menores e dos maiores*/
 		custo += custoIndividual(vet,tam,pivo) + quick(vetmenor,nMenor) + quick(vetmaior,nMaior);
 	}
+	
+	free(vetmenor);
+	free(vetmaior);
+	
 	/*retorna a media dos custos*/
 	return custo/tam;
 }
