@@ -10,7 +10,7 @@
 lista *cria_lista(int mem)
 {	
 	lista *p = (lista *)malloc(sizeof(lista));
-	
+	printf("asd\n");
 	p->n = mem;
 	strcpy(p->nome,"");
 	p->prox = NULL;

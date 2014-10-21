@@ -11,17 +11,17 @@
 #include <string.h>
 
 typedef struct lista lista;
-typedef char* string;
+typedef const char* string;
 
 struct lista{
 	int n;
-	string nome;
+	char nome[127];
 	lista *prox;
 };
 
-void cria_lista(lista **p, int mem);
+lista *cria_lista(int mem);
 
-void insere_lista(lista **last, string nome, int n);
+lista *insere_lista(lista **last, string nome, int n);
 
 void desaloca_lista(lista **first);
 

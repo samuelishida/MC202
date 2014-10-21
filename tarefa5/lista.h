@@ -11,11 +11,11 @@
 #include <string.h>
 
 typedef struct lista lista;
-typedef char* string;
+typedef const char* string;
 
 struct lista{
 	int n;
-	string nome;
+	char nome[127];
 	lista *prox;
 };
 

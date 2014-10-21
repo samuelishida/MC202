@@ -8,21 +8,36 @@
 
 int main()
 {
-	int n;
+	int n, mem;
 	lista *l;
-	
-	l = cria_lista(0);
+	char entrada[127];
+	int j;
 	
 	scanf("%d",&n);
 	
 	while(n)
 	{
-
+		scanf("%s",entrada);
+		
+		mem = atoi(entrada);
+		printf("mem = %d\n",mem);
+		
+		if(strspn(entrada,k))
+			j = 1;
+		else if(strspn(entrada,m))
+			j = 1024;
+		else 
+			j = 1024*1024;
+		
+		printf("%d\n",j*mem);
+		
+		l = cria_lista(mem);
+		
 		while(n--)
 		{
-			scanf("%d",&n);
 			printf("%d\n",n);
 		}
+		
 		desaloca_lista(&l);
 		scanf("%d",&n);
 	}
