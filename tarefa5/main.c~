@@ -17,7 +17,7 @@ int main()
 	
 	while(n)
 	{
-
+		l = cria_lista(0);
 		while(n--)
 		{
 			scanf("%d",&n);

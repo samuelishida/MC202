@@ -7,18 +7,16 @@
 
 #include "lista.h"
 
-lista *cria_lista(int mem)
+void cria_lista(lista **p, int mem)
 {	
-	lista *p = (lista *)malloc(sizeof(lista));
+	*p = (lista *)malloc(sizeof(lista));
 	
-	p->n = mem;
-	strcpy(p->nome,"");
-	p->prox = NULL;
-	
-	return p;
+	(*p)->n = mem;
+	strcpy((*p)->nome,"");
+	(*p)->prox = NULL;
 }
 
-lista *insere_lista(lista **last, string nome, int n)
+void insere_lista(lista **last, string nome, int n)
 {
 	lista *p = (lista *)malloc(sizeof(lista)) ;
 	
@@ -27,8 +25,6 @@ lista *insere_lista(lista **last, string nome, int n)
 	p->prox = NULL;
 	
 	(*last)->prox = p;
-	
-	return p;
 }
 
 void desaloca_lista(lista **first)

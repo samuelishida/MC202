@@ -19,9 +19,9 @@ struct lista{
 	lista *prox;
 };
 
-lista *cria_lista(int mem);
+void cria_lista(lista **p, int mem);
 
-lista *insere_lista(lista **last, string nome, int n);
+void insere_lista(lista **last, string nome, int n);
 
 void desaloca_lista(lista **first);
 

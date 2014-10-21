@@ -77,7 +77,6 @@ void otimiza(lista **first)
 {
 	lista *p = (*first)->prox;
 	lista *ant = *first;
-	int i;
 	
 	while(p)
 	{
