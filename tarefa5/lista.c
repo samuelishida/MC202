@@ -8,91 +8,27 @@
 #include "lista.h"
 
 lista *cria_lista(int mem)
-{
-	lista first = (lista *) malloc(sizeof(lista));
+{	
+	lista *p = (lista *)malloc(sizeof(lista));
 	
-	int n = mem;/*memoria maxima*/
-	first->prox = NULL;
+	p->n = mem;
+	strcpy(p->nome,nome);
+	p->prox = NULL;
 	
-	return first;
+	return p;
 }
 
-bool insere_lista(lista **first, string nome, int mem)
+lista *insere_lista(lista **last, string nome, int n)
 {
-	lista *p, *ant;
-	lista *init;
-	lista *aux;
-	int i;
+	lista *p = (lista *)malloc(sizeof(lista)) ;
 	
-	if(lista_vazia(*first))
-	{
-		ant = (*first)->prox = (lista*) malloc(sizeof(lista));
-		ant->n = 0;
-		strcpy(ant->nome,nome);
-		
-		for(i=1; i<mem; i++)
-		{
-			ant->n = i;
-			strcpy(ant->nome,nome);
-			ant->prox = (lista*) malloc(sizeof(lista));
-			ant = ant->prox;
-		}
-		
-		ant->n = i;
-		strcpy(ant->nome,nome);
-		ant->prox = NULL;
-		
-		return true;
-	}
+	p->n = n;
+	strcpy(p->nome,nome);
+	p->prox = NULL;
 	
-	p = init = (*first)->prox;
+	(*last)->prox = p;
 	
-	while(p)
-	{
-		if(!strcmp(p->nome,init->nome))
-		{
-			aux = init;
-			
-			if(p->n - init->n > mem)
-			{
-				while(aux != p)
-				{
-					strcpy(aux->nome,nome);
-					aux = aux->prox;
-				}
-				return true;
-			}
-		}
-		else
-			init = p;
-		
-		ant = p;
-		p = p->prox;
-	}
-	
-	if(ant->n+mem <= (*first)->n)
-	{
-		for(i=ant->n; i<mem; i++)
-		{
-			ant->n = i;
-			strcpy(ant->nome,nome);
-			ant->prox = (lista*) malloc(sizeof(lista));
-			ant = ant->prox;
-		}
-		
-		ant->n = i;
-		strcpy(ant->nome,nome);
-		ant->prox = NULL;
-		
-		return false;
-	}
-	
-	return false;
-}
-
-void remove_lista(string nome)
-{
-	
+	return p;
 }
 
 void desaloca_lista(lista **first)
@@ -113,7 +49,7 @@ bool fim_lista(lista *p)
 	return (lista->prox == NULL);
 }
 
-bool lista_vazia(lista *first)
+bool lista_vazia(lista **first)
 {
-	return (first->prox == NULL);
+	return (first == NULL);
 }
