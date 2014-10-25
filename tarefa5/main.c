@@ -31,7 +31,7 @@ int main()
 		
 		printf("%d\n",j*mem);
 		
-		l = cria_lista(mem);
+		l = cria_lista(j*mem);
 		
 		while(n--)
 		{
