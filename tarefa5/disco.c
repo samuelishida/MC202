@@ -42,7 +42,7 @@ bool insere_disco(lista **first, string nome, int mem)
 		{
 			aux = init;
 			
-			/*insere em um bloco livre de memoria se for possivel*/
+			/* insere em um bloco livre de memoria se for possivel*/
 			if(p->n - init->n > mem && (p->n - init->n + mem) < ((*first)->n)/8)
 			{
 				for(i = 0; i < mem ; i++)
@@ -52,7 +52,7 @@ bool insere_disco(lista **first, string nome, int mem)
 				}
 				return true;
 			}
-			else
+			else /*reseta a contagem do bloco*/
 				init = p;
 		}
 			
