@@ -8,7 +8,5 @@
 #include "lista.h"
 
 void remove_disco(lista **first, string nome);
-
 bool insere_disco(lista **first, string nome, int mem);
-
 void otimiza(lista **first);

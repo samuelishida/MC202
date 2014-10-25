@@ -11,6 +11,8 @@ int main()
 	int n, mem;
 	lista *l;
 	char entrada[127];
+	string m = "M";
+	string k = "K";
 	int j;
 	
 	scanf("%d",&n);
