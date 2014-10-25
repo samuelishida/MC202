@@ -16,7 +16,7 @@ void remove_disco(lista **first, string nome)
 			strcpy(p->nome,"");
 }
 
-bool insere_disco(lista **first, string nome, int mem, int memMax)
+bool insere_disco(lista **first, string nome, int mem)
 {
 	lista *p, *ant;
 	lista *init;
@@ -43,11 +43,11 @@ bool insere_disco(lista **first, string nome, int mem, int memMax)
 			aux = init;
 			
 			/*insere em um bloco livre de memoria se for possivel*/
-			if(p->n - init->n > mem)
+			if(p->n - init->n > mem && (p->n - init->n + mem) < ((*first)->n)/8)
 			{
 				for(i = 0; i < mem ; i++)
 				{
-					strcpy(aux->nome,nome);
+					strcpy(aux->nome,nome,init->n+i);
 					aux = aux->prox;
 				}
 				return true;
@@ -61,13 +61,14 @@ bool insere_disco(lista **first, string nome, int mem, int memMax)
 	}
 	
 	/*caso tenha que alocar mais elementos para a lista*/
-	if(ant->n+mem <= (*first)->n)
+	if( ant->n - init->n >= mem && (ant->n - init->n + mem) <= ((*first)->n)/8)
 	{
 		for(i = ant->n; i <= (mem+ant->n); i++)
 			insere_lista(&ant,nome,i);
 			
-		return false;
-	}
+		return true;
+	}	
+	
 	
 	/*caso nao tenha como inserir o arquivo*/
 	return false;
@@ -75,7 +76,7 @@ bool insere_disco(lista **first, string nome, int mem, int memMax)
 
 void otimiza(lista **first)
 {
-	lista *p = *first->prox;
+	lista *p = (*first)->prox;
 	lista *ant = *first;
 	
 	while(p)
