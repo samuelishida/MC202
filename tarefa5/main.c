@@ -8,10 +8,11 @@
 
 int main()
 {
-	int n, mem;
+	int n;
 	lista *l;
 	char entrada[127];
-	int j;
+	char nome[127];
+	bool erro = false;
 	
 	scanf("%d",&n);
 	
@@ -19,24 +20,42 @@ int main()
 	{
 		scanf("%s",entrada);
 		
-		mem = atoi(entrada);
-		printf("mem = %d\n",mem);
+		cria_disco(&l,entrada);
 		
-		if(strspn(entrada,k))
-			j = 1;
-		else if(strspn(entrada,m))
-			j = 1024;
-		else 
-			j = 1024*1024;
-		
-		printf("%d\n",j*mem);
-		
-		l = cria_lista(j*mem);
-		
-		while(n--)
+		while(n-- && erro)
 		{
-			printf("%d\n",n);
+			scanf("%s",entrada);
+			
+			if(!strcmp(entrada,"remove"))
+			{
+				scanf("%s",entrada);
+				remove_disco(&l,entrada);
+			}
+			else if(!strcmp(entrada,"insere"))
+			{
+				scanf("%s",nome);
+				scanf("%s",entrada);
+				
+				if(!insere_disco(&l,nome,calc_mem(entrada)))
+				{
+					otimiza(&l);
+					
+					if(!insere_disco(&l,nome,calc_mem(entrada)))
+					{
+						printf("ERRO: disco cheio\n");
+						
+						erro = true;/*desconsidera o resto da entrada*/
+					}
+				}
+			}
+			else if(!strcmp(entrada,"otimiza"))
+				otimiza(&l);
 		}
+		
+		if(!erro)
+			disco_status(&l);
+			
+		erro = false;
 		
 		desaloca_lista(&l);
 		scanf("%d",&n);

@@ -12,3 +12,9 @@ void remove_disco(lista **first, string nome);
 bool insere_disco(lista **first, string nome, int mem);
 
 void otimiza(lista **first);
+
+void cria_disco(lista **first, string entrada);
+
+int calc_mem(string entrada);
+
+void disco_status(lista **first);

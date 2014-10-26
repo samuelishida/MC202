@@ -10,8 +10,8 @@
 lista *cria_lista(int mem)
 {	
 	lista *p = (lista *)malloc(sizeof(lista));
-	printf("asd\n");
-	p->n = mem;
+
+	p->n = mem; /* first->n = memoria maxima */
 	strcpy(p->nome,"");
 	p->prox = NULL;
 	
@@ -51,5 +51,5 @@ bool fim_lista(lista *p)
 
 bool lista_vazia(lista **first)
 {
-	return (first == NULL)?(true):(false);
+	return ( (*first)->prox == NULL)?(true):(false);
 }
