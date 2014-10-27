@@ -25,13 +25,14 @@ int main()
 		/*for(p = l; p ; p = p->prox)
 			printf("%d ",p->n);*/
 		
-		while(n-- && !erro)
+		while(n--)
 		{
 			scanf("%s",entrada);
 			
 			if(!strcmp(entrada,"remove"))
 			{
 				scanf("%s",entrada);
+				
 				if(!erro)
 					remove_disco(&l,entrada);
 			}
@@ -40,7 +41,7 @@ int main()
 				scanf("%s",nome);
 				scanf("%s",entrada);
 				
-				if(!insere_disco(&l,nome,calc_mem(entrada)) && !erro)
+				if(!erro && !insere_disco(&l,nome,calc_mem(entrada)))
 				{
 					otimiza(&l);
 					
@@ -52,7 +53,7 @@ int main()
 					}
 				}
 			}
-			else if(!strcmp(entrada,"otimiza") && !erro)
+			else if(!erro && !strcmp(entrada,"otimiza"))
 				otimiza(&l);
 		}
 		
