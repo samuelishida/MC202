@@ -12,6 +12,8 @@ void remove_disco(lista **first, string nome)
 {
 	lista *p = (*first)->prox;
 	
+	printf("--remove\n");
+	
 	for(p = (*first)->prox; p ; p=p->prox)
 		if(!strcmp(p->nome,nome))
 			strcpy(p->nome,"");
@@ -25,22 +27,18 @@ bool insere_disco(lista **first, string nome, int mem)
 	lista *aux;
 	int i;
 	
-	if(lista_vazia(first))
-	{
-		ant = (*first)->prox;
-		
-		for(i=0; i<=mem; i++)
-			insere_lista(&ant,nome,i);
-		
-		return true;
-	}
+	printf("--insere\n");
 	
 	p = init = (*first)->prox;
 	
 	while(p)
 	{
 		/*se trocou o bloco*/
-		if( p->n % (( (*first)->n )/8) )
+		if( !((p->n) % ( (*first)->n )/8) )
+			init = p;/*recomeca a verificao de memoria livre*/
+		
+		/*caso estava varrendo um arquivo*/
+		if(strcmp(init->nome,"") && !strcmp(p->nome,""))
 			init = p;/*recomeca a verificao de memoria livre*/
 			
 		/*se acabar o bloco livre*/
@@ -66,15 +64,6 @@ bool insere_disco(lista **first, string nome, int mem)
 		p = p->prox;
 	}
 	
-	/*caso tenha que alocar mais elementos para a lista*/
-	if( ant->n - init->n >= mem && (ant->n - init->n + mem) <= ((*first)->n)/8)
-	{
-		for(i = ant->n; i <= (mem+ant->n); i++)
-			insere_lista(&ant,nome,i);
-			
-		return true;
-	}
-	
 	/*caso nao tenha como inserir o arquivo*/
 	return false;
 }
@@ -82,32 +71,65 @@ bool insere_disco(lista **first, string nome, int mem)
 /*tira os espaços em branco da memoria*/
 void otimiza(lista **first)
 {
-	lista *p = (*first)->prox;
-	lista *ant = *first;
-	int i;
+	lista *p;
+	lista *arqs;
+	lista *init;
 	
-	while(p)
+	arqs = cria_lista(0);
+	
+	printf("--otimiza\n");
+	
+	/*cria uma lista com os nomes dos arquivos e seus respectivos tamanhos*/
+	for(p = init = (*first)->prox; p ; p = p->prox)
 	{
-		/*bloco livre*/
-		if(!strcmp(p->nome,""))
+		/*se acabou o bloco*/
+		if(!( (p->n) % ((*first)->n)/8 ))
 		{
-			ant->prox = p->prox;
-			free(p);
-			p = ant->prox;
+			if(strcmp(init->nome,""))
+				insere_lista(&arqs,init->nome,p->n-init->n);
+				
+			init = p;
 		}
-		else
-			p = p->prox;
+		else if(strcmp(p->nome,init->nome))
+		{
+			/*caso estava varrendo um arquivo*/
+			if(strcmp(init->nome,""))
+				insere_lista(&arqs,init->nome,p->n-init->n);
+				
+			init = p;
+		}
 	}
 	
-	for(i = 0 ; p != NULL ; p = p->prox)
-		p->n = i++;
+	/* limpa o disco para realocar os arquivos*/
+	for(p = (*first)->prox; p ; p = p->prox)
+		strcpy(p->nome,"");
+	
+	/*realoca os arquivos*/
+	for(p = arqs->prox; p ; p = p->prox)
+		insere_disco(first,p->nome,p->n);
+	
+	desaloca_lista(&arqs);
+	
+		printf("--feshow\n");
 }
 
 void cria_disco(lista **first, string entrada)
 {	
-	int mem = calc_mem(entrada);
+	int mem = calc_mem(entrada), i;
+	lista *p;
+	
+	printf("--cria_disco\n");
 	
 	*first = cria_lista(mem);
+	p = insere_lista(first,"",0);
+	
+	for(i=1; i<mem; i++){
+		
+		insere_lista(&p,"",i);
+		p = p->prox;
+	}
+	
+	printf("--feshow\n");
 }
 
 int calc_mem(string entrada)
@@ -125,37 +147,28 @@ int calc_mem(string entrada)
 void disco_status(lista **first)
 {
 	lista *p;
-	int aux;
 	double cont = 0;
+	
+	printf("--status\n");
 	
 	for(p = (*first)->prox; p != NULL; p = p->prox)
 	{
-		/*se trocou de bloco*/
-		if(p->n % ((*first)->n)/8)
+		printf("%d\n",p->n);
+		/*se acabou o bloco*/
+		if( !((p->n+1) % (((*first)->n)/8)))
 		{
 			/*ve o quanto de memoria foi ocupada no bloco e imprime*/
-			if(8*cont/(double)((*first)->n ) > 75)
-				printf("[#]");
-			else if(8*cont/(double)((*first)->n ) > 25)
+			if(8*cont/(double)((*first)->n ) <= 25)
+				printf("[ ]");
+			else if(8*cont/(double)((*first)->n ) <= 75)
 				printf("[-]");
 			else
-				printf("[ ]");
+				printf("[#]");
 			
 			cont = 0;
 		}
 		else if (!strcmp(p->nome,""))/*se for memoria livre*/
-			cont = 0;
-		else
 			cont++;
-			
-		aux = p->n;
-	}
-	
-	while(aux <= (*first)->n)
-	{
-		aux++;
-		if(aux % ((*first)->n)/8)
-			printf("[ ]");/*a memoria esta livre*/
 	}
 	
 	printf("\n");

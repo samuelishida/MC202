@@ -14,7 +14,7 @@ lista *cria_lista(int mem)
 	p->n = mem; /* first->n = memoria maxima */
 	strcpy(p->nome,"");
 	p->prox = NULL;
-	
+
 	return p;
 }
 
@@ -35,6 +35,8 @@ void desaloca_lista(lista **first)
 {
 	lista *p = *first;
 	lista *aux;
+	
+	printf("--desaloca\n");
 	
 	while(p)
 	{

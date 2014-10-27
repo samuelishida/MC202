@@ -9,7 +9,7 @@
 int main()
 {
 	int n;
-	lista *l;
+	lista *l, *p;
 	char entrada[127];
 	char nome[127];
 	bool erro = false;
@@ -22,21 +22,25 @@ int main()
 		
 		cria_disco(&l,entrada);
 		
-		while(n-- && erro)
+		/*for(p = l; p ; p = p->prox)
+			printf("%d ",p->n);*/
+		
+		while(n-- && !erro)
 		{
 			scanf("%s",entrada);
 			
 			if(!strcmp(entrada,"remove"))
 			{
 				scanf("%s",entrada);
-				remove_disco(&l,entrada);
+				if(!erro)
+					remove_disco(&l,entrada);
 			}
 			else if(!strcmp(entrada,"insere"))
 			{
 				scanf("%s",nome);
 				scanf("%s",entrada);
 				
-				if(!insere_disco(&l,nome,calc_mem(entrada)))
+				if(!insere_disco(&l,nome,calc_mem(entrada)) && !erro)
 				{
 					otimiza(&l);
 					
@@ -44,11 +48,11 @@ int main()
 					{
 						printf("ERRO: disco cheio\n");
 						
-						erro = true;/*desconsidera o resto da entrada*/
+						erro = true;
 					}
 				}
 			}
-			else if(!strcmp(entrada,"otimiza"))
+			else if(!strcmp(entrada,"otimiza") && !erro)
 				otimiza(&l);
 		}
 		

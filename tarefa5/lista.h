@@ -15,7 +15,7 @@ typedef const char* string;
 
 struct lista{
 	int n;
-	char nome[127];
+	char nome[15];
 	lista *prox;
 };
 
