@@ -62,6 +62,8 @@ int main()
 		
 		if(!erro)
 			disco_status(&l);
+		
+		printf("\n -> %d\n",(l)->n);
 			
 		erro = false;
 		

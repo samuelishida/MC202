@@ -36,6 +36,8 @@ void desaloca_lista(lista **first)
 	lista *p = *first;
 	lista *aux;
 	
+	printf("--desaloca\n");
+	
 	while(p)
 	{
 		aux = p;
