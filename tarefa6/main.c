@@ -50,7 +50,7 @@ void free_arv (ArvBin **p) {
 }
 
 void *montaArv (ArvBin **arv, char *preOrdem, char *inOrdem) {
-	char preOrdem1[53], inOrdem1[53], inOrdem2[53];
+	char preOrdem1[53], preOrdem2[53], inOrdem1[53], inOrdem2[53];
 	int i, j;
 	
 	arv = criaArv(preOrdem[0],NULL,NULL);
