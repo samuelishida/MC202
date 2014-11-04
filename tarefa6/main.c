@@ -10,19 +10,19 @@
 #include <string.h>
 
 typedef struct No {
-	int n;
+	char n;
 	struct No *esq, *dir ;
 } ArvBin, NoArvBin;
 
 void criaNo (ArvBin **p, int x);
 
-ArvBin *criaArv (int x, ArvBin *NoEsq, ArvBin *NoDir);
+ArvBin *criaArv (char x, ArvBin *NoEsq, ArvBin *NoDir);
 
 void PosOrdem (ArvBin *p);
 
 void free_arv (ArvBin **p);
 
-ArvBin *criaArv (int x, ArvBin *NoEsq, ArvBin *NoDir) {
+ArvBin *criaArv (char x, ArvBin *NoEsq, ArvBin *NoDir) {
 	ArvBin *p = (ArvBin *)malloc(sizeof(ArvBin)) ;
 	p->n = x ;
 	p->esq = NoEsq ;
@@ -34,7 +34,7 @@ void PosOrdem (ArvBin *p) {
 	if (p != NULL) {
 		PosOrdem (p->esq) ;
 		PosOrdem (p->dir) ;
-		printf ("%d", p->n) ;	
+		printf ("%c", p->n) ;	
 	}
 }
 
@@ -49,24 +49,42 @@ void free_arv (ArvBin **p) {
 	*p = NULL;
 }
 
-void *montaArv (ArvBin **arv, char *preOrdem, char *inOrdem) {
+void montaArv (ArvBin **arv, char *preOrdem, int tamPre, char *inOrdem, int tamIn) {
 	char preOrdem1[53], preOrdem2[53], inOrdem1[53], inOrdem2[53];
-	int i, j;
+	int i, j, tamPre1, tamPre2, tamIn1, tamIn2;
 	
-	arv = criaArv(preOrdem[0],NULL,NULL);
+	*arv = criaArv(preOrdem[0],NULL,NULL);
 	
-	for( i=0 ; inOrdem[i] != preOrdem[0]; i++){
-		inOrdem1[i] = inOrdem[i];
+	/* separa os subvetores */
+	
+	for( tamIn1=0 ; inOrdem[tamIn1] != preOrdem[0] && tamIn1 < tamIn; tamIn1++){
+		inOrdem1[tamIn1] = inOrdem[tamIn1];
 	}
 	
-	for( j=0; j<i; j++)
-		preOrdem1[j] = preOrdem[j+1];
+	inOrdem1[tamIn1] = '\0';
 	
-	for( i=i+1, j = 0 ; inOrdem[i] != NULL ; i++, j++){
-		inOrdem2[j] = inOrdem[i];
-	}
+	for( tamPre1=0; tamPre1<tamIn1; tamPre1++, tamPre1++)
+		preOrdem1[tamPre1] = preOrdem[tamPre1+1];
 	
-	return; 
+	preOrdem1[tamPre1] = '\0';
+	
+	if(tamPre > 1 && tamIn > 1)
+		montaArv(&((*arv)->esq),preOrdem1,tamPre1,inOrdem1,tamIn1);
+	
+	for( j=tamPre1+1, tamPre2=0; j < tamPre; j++, tamPre2++)
+		preOrdem2[tamPre2] = preOrdem[j];
+	
+	preOrdem2[tamPre2] = '\0';
+	
+	for( j=tamIn1+1, tamIn2=0 ; j < tamIn ; j++, tamIn2++)
+		inOrdem2[tamIn2] = inOrdem[j];
+	
+	inOrdem2[tamIn2] = '\0';
+	
+	if(tamPre > 1 && tamIn > 1)
+		montaArv(&((*arv)->dir),preOrdem2,tamPre2,inOrdem2,tamIn2);
+	
+	/*printf("%s %s %s %s\n",preOrdem1,preOrdem2,inOrdem1,inOrdem2);*/
 }
 
 
@@ -81,14 +99,13 @@ int main()
 	while(numCasos--)
 	{
 		scanf("%d%s%s",&nNos,preOrdem,inOrdem);
-		montaArv(&arv,preOrdem,inOrdem);
+		montaArv(&arv,preOrdem,nNos,inOrdem,nNos);
 		/*arv = criaArv(1,criaArv(2,NULL,NULL),criaArv(3,NULL,NULL));*/
 		
 		PosOrdem(arv);
 		
 		free_arv(&arv);
 	}
-	printf("\n");
-	printf("%d\n", arv);
+	
 	return 0;
 }
