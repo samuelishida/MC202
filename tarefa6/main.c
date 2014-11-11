@@ -16,7 +16,7 @@ int main()
 	
 	while(numCasos--)
 	{
-		scanf("%d%s%s",&nNos,preOrdem,indOrdem);
+		scanf("%d%s%s",&nNos,preOrdem,inOrdem);
 	}
 	
 	return 0;
