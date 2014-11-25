@@ -9,21 +9,6 @@
 
 ArvoreBin *Remove_Aux;
 
-void preOrdem(ArvoreBin *arv)
-{
-	if(arv)
-	{
-		printf("sou o %d\n",arv->rotulo);
-		if(arv->pai)
-			printf("meu pai eh %d\n",arv->pai->rotulo);
-		else 
-			printf("sou a raiz\n");
-			
-		preOrdem(arv->esq);
-		preOrdem(arv->dir);
-	}
-}
-
 ArvoreBin *criaArvoreBin() {
     return NULL;
 }

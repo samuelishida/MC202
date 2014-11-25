@@ -30,4 +30,4 @@ NoArvBin *min_subarv( NoArvBin *u );
 void afunila(ArvoreBin **raiz, int valor);
 void rotDir(ArvoreBin **raiz, NoArvBin *x );
 void rotEsq( ArvoreBin **raiz, NoArvBin *x );
-void freeArvBin( Arvore **arv);
+void freeArvBin( ArvoreBin **arv);

@@ -19,7 +19,7 @@ int main()
 
 	criaUniverso(&U,tamUniverso);
 	
-   /* Inicializa o vetor de subconjuntos */
+   /* aloca o vetor de arvores que guarda os subconjubntos */
    arvs = (ArvoreBin **) malloc(nSub * sizeof(ArvoreBin *));
    
     /* le os subconjuntos */
@@ -35,7 +35,7 @@ int main()
    R = criaArvoreBin();
    resp[0] = '\0';
 
-    /* Algoritmo guloso */
+   /* Algoritmo guloso */
 	while(U != NULL && flag)
 	{
       /*acha M*/
@@ -81,7 +81,7 @@ int main()
 		}
 		printf(":)\n");
 	}
-	else		
+	else
 		printf(":(\n");
 			
 	freeArvBin(&U);

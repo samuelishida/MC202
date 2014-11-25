@@ -24,7 +24,6 @@ void insereNo(int info, ArvoreBin **arv);
 ArvoreBin *busca(ArvoreBin *arv, int valor);
 void troca( ArvoreBin **raiz, NoArvBin **u, NoArvBin **v );
 void removeNo( ArvoreBin **raiz, int chave );
-void preOrdem(ArvoreBin *arv);
 void removeConjunto(ArvoreBin *M, ArvoreBin **arv);
 NoArvBin *min_subarv( NoArvBin *u );
 void afunila(ArvoreBin **raiz, int valor);
