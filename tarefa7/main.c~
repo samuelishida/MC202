@@ -58,7 +58,7 @@ int main()
 		uneConjuntos(M,&R);
 		
 		/*remove M de S*/
-		freeArvBin(&arvs[pos]);
+		//freeArvBin(&arvs[pos]);
 		arvs[pos] = NULL;
 		
 		resp[tamResp] = pos+1;

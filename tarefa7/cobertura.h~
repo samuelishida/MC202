@@ -8,6 +8,6 @@
 #include "estruturas.h"
 
 void criaUniverso(ArvoreBin **U,int tamUniverso);
-int numNos(ArvoreBin *p);
+int contaNos(ArvoreBin *p);
 void removeConjunto(ArvoreBin *M, ArvoreBin **arv);
 void uneConjuntos(ArvoreBin *M, ArvoreBin **R);

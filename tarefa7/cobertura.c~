@@ -31,7 +31,7 @@ void removeConjunto(ArvoreBin *M, ArvoreBin **arv) {
 
 int numNos(ArvoreBin *p) {
     if(p)
-        return(1 + numNos(p->esq) + numNos(p->dir));
+        return(1 + contaNos(p->esq) + contaNos(p->dir));
     else
         return 0;
 }
