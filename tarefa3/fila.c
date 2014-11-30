@@ -7,17 +7,6 @@ Turma A
 
 #include "lda.h"
 
-Fila *cria_fila()
-{
-	Fila *p;
-	
-	p = (Fila*)malloc(sizeof(Fila));
-	
-	p->inicio = p->fim = 0;
-	
-	return p;
-}
-
 void insere_fila(Fila *p,Mapa n)
 {
 	if(fila_cheia(p))

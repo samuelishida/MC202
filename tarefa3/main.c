@@ -10,14 +10,11 @@ Turma A
 int main()
 {
 	Mapa m[MAX+2][MAX+2];
-	Fila *f[MAX];
+	Fila f[MAX][MAX];
 	int i,j;
 	int nLinhas,nColunas;
 	
 	scanf("%d%d",&nLinhas,&nColunas);
-	
-	for(i=0;i<MAX;i++)
-		f[i] = cria_fila();
 	
 	inicia_mapa(m,nLinhas,nColunas);
 	

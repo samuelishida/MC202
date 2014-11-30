@@ -9,7 +9,7 @@
 int main()
 {
 	int n;
-	lista *l;
+	lista *l, *p;
 	char entrada[15];
 	char nome[15];
 	bool erro = false;
@@ -56,8 +56,8 @@ int main()
 			else if(!erro && !strcmp(entrada,"otimiza"))
 				otimiza(&l);
 				
-			/*for(p = (l)->prox; p != NULL; p = p->prox)
-				printf("%s: %d aloc = %d\n",p->nome,p->n,(int)p->aloc);*/
+			for(p = (l)->prox; p != NULL; p = p->prox)
+				printf("%s: %d aloc = %d\n",p->nome,p->n,(int)p->aloc);
 		}
 		
 		if(!erro)

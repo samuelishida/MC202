@@ -11,12 +11,46 @@
 void remove_disco(lista **first, string nome)
 {
 	lista *p = (*first)->prox;
+	lista *ant;
+	int mem;
 	
 	for(p = (*first)->prox; p ; p=p->prox)
 		if(!strcmp(p->nome,nome)){
 			p->aloc = false;
-			return;
+			break;
 		}
+		
+	for(p = (*first)->prox; p->prox != NULL ; p = p->prox)
+	{
+		
+		if(!(p->aloc) && !(p->prox->aloc))
+		{
+			
+			if(p == (*first)->prox)
+			{	
+				(*first)->prox = p->prox;
+				mem = p->n;
+				free(p);
+				p = (*first)->prox;
+				p->n += mem;
+			}
+			else
+			{
+				printf("else if\n");
+				ant->prox = p->prox;
+				mem = p->n;
+				free(p);
+				p = ant;
+				p->prox->n += mem;
+			}
+		}
+		
+		/*printf("p->nome %s %d\n",p->nome, p->n);*/
+		if(!p->prox)
+			return;
+		
+		ant = p;
+	}
 }
 
 /*insere o arquivo se houver como*/
@@ -47,18 +81,7 @@ bool insere_disco(lista **first, string nome, int mem)
 	{
 		memTotal += p->n;	
 		
-		if(p->prox == NULL)
-		{
-			/*printf("(*first)->n = %d \nmemTotal + mem = %d\n",
-				(*first)->n,memTotal+mem);*/
-				
-			if(memTotal + mem <= (*first)->n)
-			{
-				insere_lista(&p,nome,mem);
-				return true;
-			}
-		}
-		else if(!(p->aloc))
+		if(!(p->aloc))
 		{
 			if(p->n == mem)
 			{
@@ -84,6 +107,17 @@ bool insere_disco(lista **first, string nome, int mem)
 				return true;
 			}
 		}
+		else if(p->prox == NULL)
+		{
+			/*printf("(*first)->n = %d \nmemTotal + mem = %d\n",
+				(*first)->n,memTotal+mem);*/
+				
+			if(memTotal + mem <= (*first)->n)
+			{
+				insere_lista(&p,nome,mem);
+				return true;
+			}
+		}
 		
 		p = p->prox;
 	}
@@ -101,18 +135,31 @@ void otimiza(lista **first)
 	lista *p;
 	lista *ant;
 	
+	/*printf("otimiza1\n");*/
+	
 	/*cria uma lista com os nomes dos arquivos e seus respectivos tamanhos*/
 	for(p = (*first)->prox; p ; p = p->prox)
 	{
+		
 		if(!(p->aloc))
 		{
-			ant->prox = p->prox;
-			free(p);
-			p = ant;
+			if(p == (*first)->prox)
+			{
+				ant = p->prox;
+				free(p);
+				p = ant;
+			}
+			else
+			{
+				ant->prox = p->prox;
+				free(p);
+				p = ant;
+			}
 		}
 		
 		ant = p;
 	}
+	/*printf("otimiza2\n");*/
 	
 	/*for(p = (*first)->prox; p != NULL; p = p->prox)
 		printf("%s: %d aloc = %d\n",p->nome,p->n,(int)p->aloc);*/
@@ -142,39 +189,39 @@ void disco_status(lista **first)
 {
 	lista *p;
 	int contBloco;
-	int i;
+	int i, j;
 	int bloco[8]={0}, nBlocos=0;
 	double pMem;
 	
 	contBloco = 0;
 	
-	for(p = (*first)->prox; p != NULL; p = p->prox)
+	for(i=1, j=1, p = (*first)->prox; i <= ((*first)->n/8) && p ; i++, j++)
 	{
-		contBloco = p->n;
 		
-		/*se ele passou do bloco*/
-		while(contBloco >= (*first)->n/8)
-		{
-			bloco[nBlocos++] = (p->aloc)*(*first)->n/8;
-			contBloco -= (*first)->n/8;
+		if(j < p->n)
+			bloco[nBlocos] += p->aloc;
+		else if(j == p->n){
+			j = 0;
+			bloco[nBlocos] += p->aloc;
+			p = p->prox;
 		}
-		if(contBloco > 0)
-		{
-			if(bloco[nBlocos] + (p->aloc)*(contBloco) <= (*first)->n/8)
-				bloco[nBlocos] += (p->aloc)*(contBloco);
-			else 
-			{
-				bloco[nBlocos+1] = bloco[nBlocos] + contBloco;
-				bloco[nBlocos] =  (*first)->n/8;
-				bloco[nBlocos+1] %= (*first)->n/8;
-				nBlocos++;
-			}
+		else{
+			j = 0;
+			p = p->prox;
 		}
+			
+		if(i == ((*first)->n/8)){
+			nBlocos++;
+			i = 0;
+		}
+		
 	}
 	
 	for(i=0; i<8; i++)
 	{
-		pMem = (bloco[i]-(*first)->n/8.0)/((*first)->n/8.0);		
+		pMem = ((*first)->n/8.0 - bloco[i])/((*first)->n/8.0);		
+		
+		/*printf("%.2f",pMem);*/
 		
 		if(pMem > 0.75)
 			printf("[ ]");
@@ -184,7 +231,7 @@ void disco_status(lista **first)
 			printf("[#]");
 	}
 	
-	printf("\n");
+	/*printf("\n");
 	
 	for(i=0; i<8; i++)
 	{
@@ -194,7 +241,7 @@ void disco_status(lista **first)
 	printf("Mem max = %d ",(*first)->n);
 	
 	for(p = (*first)->prox; p != NULL; p = p->prox)
-		printf("\n%s: %d",p->nome,p->n);
+		printf("\n%s: %d %d",p->nome,p->n,p->aloc);*/
 	
 	printf("\n");
 }
