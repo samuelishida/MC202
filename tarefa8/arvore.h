@@ -10,13 +10,15 @@
 #include <stdbool.h>
 #include <string.h>
 
-typedef struct lista lista;
-typedef const char* string;
-
 typedef struct Arvore {
-    int rotulo;
+    int n;
     struct Arvore *pai;
-    struct Arvore **filhos;
 } Arvore, NoArv;
 
 Arvore *criaArvore();
+Arvore **criaFloresta(int numArvs);
+int lca(int a, int b, Arvore **floresta, int numArvs);
+void link(int a, int b, Arvore **floresta);
+void cut(int a, Arvore **floresta);
+void liberaArv(Arvore *arv);
+void liberaFloresta(Arvore **floresta, int numArvs);
