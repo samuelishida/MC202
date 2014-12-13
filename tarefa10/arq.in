@@ -1,0 +1,10 @@
+insere 996677 "Fulano de Tal"
+insere 996677 "Fulano de Tal"
+imprime
+consulta "Fulano de Tal"
+consulta "Maria da Silva"
+consulta "abc"
+remove "Fulano de Tal"
+remove "Fulano"
+imprime
+sair
