@@ -61,8 +61,8 @@ bool RemoveTabela(TabelaHash *t, char *buf){
 	while(p){
 		if(strcmp(p->info.nome,buf) == 0)
 			break;
-		p = p->prox;
 		anteriorP = p;
+		p = p->prox;
 	}
 	
 	if(p == NULL)
@@ -81,7 +81,7 @@ bool RemoveTabela(TabelaHash *t, char *buf){
 
 bool ConsultaTabela(TabelaHash *t, char *buf, Aluno *a){
 	unsigned int indice;
-	Lista *p, *anteriorP;
+	Lista *p;
 	
 	indice = FuncaoHash(buf);
 	p = t[indice].Head;
@@ -89,7 +89,6 @@ bool ConsultaTabela(TabelaHash *t, char *buf, Aluno *a){
 	while(p){
 		if(strcmp(p->info.nome,buf) == 0)
 			break;
-		anteriorP = p;
 		p = p->prox;
 	}
 	
