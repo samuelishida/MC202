@@ -8,37 +8,9 @@ Comparing files arq03.res and ARQ03.OUT
 FC: no differences encountered
 
 Comparing files arq04.res and ARQ04.OUT
-***** arq04.res
-   58:  (0) 991067 "Sílvia M. de Oliveira"
-   59:  (1) 991265 "Anamaria Gomide"
-   60:  (1) 991035 "M. Beatriz de Toledo"
-   61:  (2) 991234 "Sandro Rigo"
-***** ARQ04.OUT
-   58:  (0) 991067 "Sílvia M. de Oliveira"
-   59:  (1) 991035 "M. Beatriz de Toledo"
-   60:  (1) 991265 "Anamaria Gomide"
-   61:  (2) 991234 "Sandro Rigo"
-*****
+FC: no differences encountered
 
 Comparing files arq05.res and ARQ05.OUT
-***** arq05.res
-   99:  (6) 991288 "Ricardo Anido"
-  100:  (7) 991162 "Célia P. de Mello"
-  101:  (7) 991151 "Guido S. de Araujo"
-***** ARQ05.OUT
-   99:  (6) 991288 "Ricardo Anido"
-  100:  (7) 991151 "Guido S. de Araujo"
-*****
-
-***** arq05.res
-  103:  (7) 991190 "Ricardo Dahab"
-  104:  (8) 991041 "Fernando A. Vanini"
-***** ARQ05.OUT
-  102:  (7) 991190 "Ricardo Dahab"
-  103:  (7) 991162 "Célia P. de Mello"
-  104:  (8) 991041 "Fernando A. Vanini"
-*****
-
 ***** arq05.res
 ***** ARQ05.OUT
   113:  

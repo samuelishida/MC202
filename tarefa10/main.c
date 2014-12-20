@@ -20,7 +20,7 @@ void LeAluno(Aluno *a) {
 /*le linha de comando*/
 void lelinha() {
    int c;
-   do { c=getchar(); } while (c!='\n');
+   do { c= getchar(); } while (c!='\n');
 }
 
 int main(int argc, char *argv[]) {
