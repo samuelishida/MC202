@@ -7,7 +7,6 @@
 
 #include "arvore.h"
 
-
 int main()
 {
 	int numArvs, numOp, a, b;
@@ -16,8 +15,10 @@ int main()
 	
 	scanf("%d%d",&numArvs,&numOp);
 	
+	/*cria um vetor que contem as raizes das arvores*/
 	floresta = criaFloresta(numArvs);
 	
+	/*le as N operacoes e chama as respectivas funcoes*/
 	while(numOp--){
 		scanf("%s%d", in, &a);
 		if(!strcmp(in,"link")){
@@ -33,6 +34,7 @@ int main()
 		}
 	}
 	
+	/*desaloca a memoria*/
 	liberaFloresta(floresta, numArvs);
 	
 	return 0;

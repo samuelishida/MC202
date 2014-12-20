@@ -10,6 +10,11 @@
 #include <stdbool.h>
 #include <string.h>
 
+/*a arvore em questao so quarda quem eh o pai, 
+pois a implementacao de arvore geral 
+fica mais simples e para o problema, so eh 
+necessario saber o pai de cada no*/
+
 typedef struct Arvore {
     int n;
     struct Arvore *pai;
