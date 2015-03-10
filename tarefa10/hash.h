@@ -1,3 +1,4 @@
+
 /*
 	Tarefa 10 de MC202
 	Aluno: Samuel Toyoshi Ishida
